@@ -1,63 +1,77 @@
+/* Define a configuração básica para body e html, centralizando o conteúdo */
 body, html {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f0f0f0;
+    display: flex; /* Utiliza flexbox para centralização */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    height: 100vh; /* Altura total da viewport */
+    margin: 0; /* Remove margens padrão */
+    font-family: Arial, sans-serif; /* Define a fonte padrão */
+    background-color: #f0f0f0; /* Define a cor de fundo */
 }
 
+/* Container dos cards */
+.cards-container {
+    display: flex; /* Disposição em linha dos cards */
+    justify-content: center; /* Centraliza os cards */
+    gap: 20px; /* Espaçamento entre os cards */
+}
+
+/* Estilo do cartão principal */
 .card {
-    width: 300px;
-    height: 400px;
-    position: relative;
-
-    perspective: 1000px;
-    transform-style: preserve-3d;
-    transition: transform 0.2s ease-out;
+    width: 300px; /* Largura do card */
+    height: 400px; /* Altura do card */
+    perspective: 1000px; /* Adiciona perspectiva para o efeito 3D */
+    position: relative; /* Necessário para posicionamento absoluto dos filhos */
+    transform-style: preserve-3d; /* Preserva o estilo 3D dos filhos */
+    transition: transform 0.2s ease-out, width 0.5s ease-in-out; /* Transição suave para transformações e tamanho */
 }
 
+/* Estilo do cartão principal ampliado */
+.card.active {
+    width: 350px; /* Aumenta a largura do card principal */
+    height: 450px; /* Aumenta a altura do card principal */
+    transition: transform 0.2s ease-out, width 0.5s ease-in-out; /* Transição suave para transformações e tamanho */
+}
+
+/* Container da imagem para controlar o overflow e adicionar sombra */
 .card .image-container {
-    width: 100%;
-    height: 100%;
-
-    overflow: hidden;
-
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    width: 100%; /* Largura total do card */
+    height: 100%; /* Altura total do card */
+    overflow: hidden; /* Esconde partes da imagem que saem do container */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Adiciona sombra à imagem */
 }
 
+/* Estilo da imagem dentro do card */
 .card img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    border-radius: 10px;
-    transition: transform 0.2s ease-out;
+    width: 100%; /* Largura total do container */
+    height: 100%; /* Altura total do container */
+    object-fit: cover; /* Cobre totalmente o container, cortando se necessário */
+    border-radius: 10px; /* Bordas arredondadas para corresponder ao container */
+    transition: transform 0.2s ease-out; /* Transição suave para transformações */
 }
 
+/* Efeito de zoom na imagem ao passar o mouse */
 .card:hover img {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Aumenta ligeiramente a imagem */
 }
 
+/* Estilo da seção de informações no card */
 .card .info {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-    backface-visibility: hidden;
-    transform: translateZ(30px);
-
-    transition: transform 0.2s ease-out;
+    position: absolute; /* Posicionamento absoluto dentro do card */
+    bottom: 10px; /* Distância da borda inferior */
+    left: 10px; /* Distância da borda esquerda */
+    right: 10px; /* Distância da borda direita */
+    padding: 20px; /* Espaçamento interno */
+    background: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adiciona sombra à informação */
+    backface-visibility: hidden; /* Esconde a parte de trás do elemento */
+    transform: translateZ(30px); /* Translada no eixo Z para efeito 3D */
+    transition: transform 0.2s ease-out; /* Transição suave para transformações */
 }
 
+/* Efeito de elevação da seção de informações ao passar o mouse */
 .card:hover .info {
-    transform: translateZ(50px);
+    transform: translateZ(50px); /* Aumenta a profundidade */
 }
